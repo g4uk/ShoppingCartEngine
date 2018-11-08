@@ -1,5 +1,6 @@
-require "shopping_cart/engine"
+require 'shopping_cart/engine'
 
 module ShoppingCart
-  # Your code goes here...
+  mattr_accessor :product_class
+  mattr_accessor :user_class
 end
