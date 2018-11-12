@@ -11,6 +11,7 @@ require 'ffaker'
 require 'factory_bot'
 require 'shoulda-matchers'
 require 'support/shoulda_matchers'
+require 'support/factory_bot'
 
 #Dir[Rails.root.join('spec', 'support', '*.rb')].each { |f| require f }
 
@@ -20,9 +21,14 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+FactoryBot.definition_file_paths << File.join(File.dirname(__FILE__), 'factories')
+FactoryBot.find_definitions
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end

@@ -11,10 +11,5 @@ class CreateShoppingCartOrderItems < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-
-    add_index :shopping_cart_order_items,
-              %i[itemable_id itemable_type],
-              unique: true,
-              name: 'order_items_on_on_itemable_id_and_itemable_type'
   end
 end

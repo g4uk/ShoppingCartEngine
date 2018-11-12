@@ -1,4 +1,4 @@
 module ShoppingCart
-  class ShippingAddress < Address
+  class BillingAddress < ShoppingCart::Address
   end
 end

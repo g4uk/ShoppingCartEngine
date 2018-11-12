@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :order do
+  factory :order, class: 'ShoppingCart::Order' do
     user
     delivery_type { FFaker::Lorem.word }
     delivery_duration { FFaker::Lorem.word }
@@ -11,8 +11,8 @@ FactoryBot.define do
     end
 
     after(:create) do |order|
-      create(:billing_address, addressable: order)
-      create(:shipping_address, addressable: order)
+      create(:billing_address, order: order)
+      create(:shipping_address, order: order)
       create(:credit_card, order: order)
     end
 

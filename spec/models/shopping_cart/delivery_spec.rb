@@ -11,7 +11,11 @@ module ShoppingCart
       it { is_expected.to validate_length_of(:name).is_at_most(name_length) }
       it { is_expected.to validate_length_of(:duration).is_at_most(name_length) }
     end
-    
+
+    context 'relations' do
+      it { is_expected.to have_many(:orders) }
+    end
+
     context 'attributes' do
       it { is_expected.to have_db_column(:name).of_type(:string) }
       it { is_expected.to have_db_column(:duration).of_type(:string) }

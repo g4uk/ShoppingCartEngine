@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :cart do
+  factory :cart, class: 'ShoppingCart::Cart' do
     transient do
       order_items_count { 4 }
     end
