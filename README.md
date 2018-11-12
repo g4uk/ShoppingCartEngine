@@ -1,28 +1,24 @@
 # ShoppingCart
-Short description and motivation.
-
-## Usage
-How to use my plugin.
+Super cute rails engine, which provides all functionality for checkout and managing orders.
 
 ## Installation
 Add this line to your application's Gemfile:
-
-```ruby
-gem 'shopping_cart'
-```
-
-And then execute:
 ```bash
-$ bundle
+gem 'shopping_cart', git: 'https://github.com/elinakolod/ShoppingCartEngine', branch: 'feature/engine'
 ```
 
-Or install it yourself as:
+it needs to be mounted in that application's config/routes.rb file:
 ```bash
-$ gem install shopping_cart
+  mount ShoppingCart::Engine, at: "/shopping_cart"
 ```
 
-## Contributing
-Contribution directions go here.
+To copy migrations into the application run the following command:
+```bash
+$ bin/rails shopping_cart:install:migrations
+```
 
-## License
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Create a new initializer at config/initializers/shopping_cart.rb inside the application where the blorgh engine is installed and put this content in it:
+```bash
+ShoppingCart.user_class = "User"
+ShoppingCart.product_class = "Product"
+```
