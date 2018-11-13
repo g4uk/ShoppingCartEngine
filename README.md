@@ -22,3 +22,5 @@ Create a new initializer at config/initializers/shopping_cart.rb inside the appl
 ShoppingCart.user_class = "User"
 ShoppingCart.product_class = "Product"
 ```
+## Overriding Views
+You can override engine's views in the application by simply creating a new file at app/views/shopping_cart/controller/action.html.haml. Then you can completely change what this view would normally output.
