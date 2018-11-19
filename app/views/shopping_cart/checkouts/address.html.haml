@@ -1,0 +1,31 @@
+%main.container
+  = render partial: 'progress_bar'
+  = form_for @order, url: wizard_path, html: { class: 'res-mb-100' } do |order_form|
+    .hidden-xs.hidden-sm
+      .row
+        .col-md-5
+          %h3.general-subtitle= t(:billing_address)
+          %p.general-info-text= t('.required')
+        .col-md-5.col-md-offset-1
+          %h3.general-subtitle= t(:shipping_address)
+    .row
+      .col-md-5.mb-40
+        .visible-xs.visible-sm
+          %h3.general-subtitle= t(:billing_address)
+          %p.general-info-text= t('.required')
+        = order_form.fields_for :billing_address do |billing_form|
+          = render 'shopping_cart/addresses/form', f: billing_form, type: 'billing'
+      .col-md-5.col-md-offset-1.mb-60.shipping-address-form
+        .visible-xs.visible-sm
+          %h3.general-subtitle= t(:shipping_address)
+        = order_form.fields_for :shipping_address do |shipping_form|
+          = render 'shopping_cart/addresses/form', f: shipping_form, type: 'shipping'
+          .form-group.checkbox
+            %label.checkbox-label
+              = order_form.check_box :billing_flag, class: 'checkbox-input billing-flag', hidden: true
+              %span.checkbox-icon
+                %i.fa.fa-check
+              %span.checkbox-text= t('.use_billing_adress')
+    .general-text-align.mb-60
+      = render 'order_summary', order: @order, pull_right: false
+      .btn.center-block.btn-default.mb-20= order_form.submit t(:continue)
